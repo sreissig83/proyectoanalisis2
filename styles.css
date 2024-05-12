@@ -1,0 +1,28 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #216419, #7a4222);
+}
+body #titlelogin{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+#login-box{
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 70px;
+}
+#loginOptions{
+margin-top: 20px;
+justify-items: center;
+
+}
+#login .container #login-row #login-column #login-box{
+    max-width: 600px;
+    height: 350px;
+    box-shadow: 2px 2px 2px 2px #343a40;
+    border-radius: 5px;
+    
+}
+.form-group{
+    padding-top: 10px;
+}
