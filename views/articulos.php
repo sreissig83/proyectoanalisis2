@@ -3,7 +3,7 @@
    
 
     if(($_SESSION["s_idRol"] === 1) && ($_SESSION["s_rol_descripcion"] === "dataentry") ||($_SESSION["s_idRol"] === 4) && ($_SESSION["s_rol_descripcion"] === "admin")){
-            $consulta = "SELECT id_articulo, Titulo, Autor, Id_editorial, ISBN, cod_barra, costo, precio_venta, punto_pedido_gral, punto_pedido_venta FROM articulo";
+            $consulta = "SELECT a.id_articulo, a.Titulo, a.Autor, e.Nombre, a.ISBN, a.cod_barra, a.costo, a.precio_venta, a.punto_pedido_gral, a.punto_pedido_venta FROM articulo a JOIN editorial e ON a.Id_editorial = e.Id_editorial";
             $resultado = $conexion->prepare($consulta);
             $resultado->execute();
             $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -50,7 +50,7 @@
                                 <td class="text-center"><?php echo $dat['id_articulo']?></td>
                                 <td class="text-center"><?php echo $dat['Titulo']?></td>
                                 <td class="text-center"><?php echo $dat['Autor']?></td>
-                                <td class="text-center"><?php echo $dat['Id_editorial']?></td>
+                                <td class="text-center"><?php echo $dat['Nombre']?></td>
                                 <td class="text-center"><?php echo $dat['ISBN']?></td>
                                 <td class="text-center"><?php echo $dat['cod_barra']?></td>
                                 <td class="text-center"><?php echo $dat['costo']?></td>

@@ -1,9 +1,17 @@
+var contadorArticulos = 0;
+    function agregarCampoSelect() {
+            $.ajax({
+                url: "../db/querytitulos.php",
+                type: "GET",
+                success: function(data) {
+                    contadorArticulos++;
+                    var nuevoSelectarticulo = '<div class="row justify-content-center align-items-center g-2"><div class="col"><select name="producto[]" class="form-select" id="articulo'+ contadorArticulos + '">' + data + '</select></div><div class="col"><input type="number"  class="form-control" id="cantidad'+ contadorArticulos + '"></input></div></div><br>';
+                    $('#contenedorSelects').append(nuevoSelectarticulo);
+                }
+            });
+    }
 $(document).ready(function(){
     tablamovimientos = $("#tablamovimientos").DataTable({
-       "columnDefs":[{
-       }],
-
-       //Cambiar lenguaje a Español
        "language": {
            "lengthMenu": "Mostrar _MENU_ registros",
            "zeroRecords": "No se encontraron resultados",
@@ -21,15 +29,18 @@ $(document).ready(function(){
        }
    });
    
+    
 
    $("#btnnuevoMov").click(function(){//Alta
-       $("#formArticulos").trigger("reset");
+       $("#formMovimientos").trigger("reset");
        $(".modal-header").css("background-color", "#28a745");
        $(".modal-header").css("color","white");
        $(".modal-title").text("Nuevo Movimiento");
        $("#modalCRUDmov").modal("show");
        id=null;
+
     });
+    
 
    $("#formArticulos").submit(function(e){//Envio de los datos al crud.php
        e.preventDefault();
@@ -66,5 +77,7 @@ $(document).ready(function(){
            }
        })
        $("#modalCRUDart").modal("hide");
+       
    });      
 })
+
