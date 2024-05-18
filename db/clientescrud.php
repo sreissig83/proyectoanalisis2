@@ -17,7 +17,6 @@
     switch($opcion){
         
         case 1:             //alta
-            file_put_contents($filename,$content);
             $consulta = "INSERT INTO cliente (Nombre, Apellido, CUIT, Domicilio) VALUES ('$nombre','$apellido','$cuit','$domicilio')";
             $resultado = $conexion->prepare($consulta);
             $resultado->execute();

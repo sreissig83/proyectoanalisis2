@@ -88,7 +88,7 @@
                                 <div class="row justify-content-center align-items-center g-2">   
                                     <div class="col">
                                         <label for="nombrecliente" class="col-form-label">Fecha:</label>
-                                        <input type="date" class="form-control" id="fecha">
+                                        <input type="datetime-local" class="form-control" id="fecha">
                                     </div>
                                     <div class="col">
                                         <label for="cuitcliente" class="col-form-label">Usuario:</label>
@@ -108,14 +108,14 @@
                                         $consulta2 = "SELECT id_punto_venta, nombre FROM puntos_venta";
                                         $resulcon1 = $conn->query($consulta1);
                                         $resulcon2 = $conn->query($consulta2);
-                                        echo "<select name='movorigen' class='form-select' id='movorigen'>";
+                                        echo "<select name='origen' class='form-select' id='movorigen'>";
                                         echo "<option value=''></option>";
                                         if ($resulcon1->num_rows > 0) {
                                             while($fila = $resulcon1->fetch_assoc()) {
-                                            echo "<option value='" . $fila["id"] . "'>" . $fila["nombre"] . "</option>";
+                                            echo "<option value='" . $fila["nombre"] . "'>" . $fila["nombre"] . "</option>";
                                             }
                                             while($fila = $resulcon2->fetch_assoc()) {
-                                            echo "<option value='" . $fila["id_punto_venta"] . "'>" . $fila["nombre"] . "</option>";
+                                            echo "<option value='" . $fila["nombre"] . "'>" . $fila["nombre"] . "</option>";
                                             }
                                         }
                                         echo "</select>";
@@ -135,14 +135,14 @@
                                         $consulta2 = "SELECT id_punto_venta, nombre FROM puntos_venta";
                                         $resulcon1 = $conn->query($consulta1);
                                         $resulcon2 = $conn->query($consulta2);
-                                        echo "<select name='movorigen' class='form-select' id='movorigen' readonly>";
+                                        echo "<select name='destino' class='form-select' id='movdestino'>";
                                         echo "<option value=''></option>";
                                         if ($resulcon1->num_rows > 0) {
                                             while($fila = $resulcon1->fetch_assoc()) {
-                                            echo "<option value='" . $fila["id"] . "'>" . $fila["nombre"] . "</option>";
+                                            echo "<option value='" . $fila["nombre"] . "'>" . $fila["nombre"] . "</option>";
                                             }
                                             while($fila = $resulcon2->fetch_assoc()) {
-                                                echo "<option value='" . $fila["id_punto_venta"] . "'>" . $fila["nombre"] . "</option>";
+                                                echo "<option value='" . $fila["nombre"] . "'>" . $fila["nombre"] . "</option>";
                                                 }
                                         }
                                         echo "</select>";
@@ -165,7 +165,7 @@
                         
                         
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" id="btnCancelar" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
                             <button type="submit" id="btnGuardar" class="btn btn-dark">Aceptar</button>
                         </div>
                     </form>    

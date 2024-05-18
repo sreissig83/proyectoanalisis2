@@ -1,22 +1,21 @@
 <?php
-
     $servername = "localhost";
     $username = "root";
     $password = "";
     $dbname = "meson_db";
-    
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    if ($conn->connect_error) {
-        die("Error de conexión: " . $conn->connect_error);
+    $conexion = new mysqli($servername, $username, $password, $dbname);
+    if ($conexion->connect_error) {
+        die("Error de conexión: " . $conexion->connect_error);
     }
-    $sql = "SELECT id_articulo, Titulo FROM articulo";
-    $result = $conn->query($sql);
-    $options = "";
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            $options .= "<option value='" . $row["id_articulo"] . "'>" . $row["Titulo"] . "</option>";
+    $consulta = "SELECT id_articulo, Titulo FROM articulo";
+    $resultado = $conexion->query($consulta);
+
+    $opciones = "";
+    if ($resultado->num_rows > 0) {
+        while($fila = $resultado->fetch_assoc()) {
+            $opciones .= "<option value='" . $fila["id_articulo"] . "'>" . $fila["Titulo"] . "</option>";
         }
     }
-    $conn->close();
-    echo $options;
+    $conexion->close();
+    print $opciones;
 ?>

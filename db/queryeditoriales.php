@@ -1,5 +1,5 @@
 <?php
-
+    
     $servername = "localhost";
     $username = "root";
     $password = "";
@@ -9,14 +9,14 @@
     if ($conn->connect_error) {
         die("Error de conexión: " . $conn->connect_error);
     }
-    $sql = "SELECT id_articulo, Titulo FROM articulo";
-    $result = $conn->query($sql);
-    $options = "";
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            $options .= "<option value='" . $row["id_articulo"] . "'>" . $row["Titulo"] . "</option>";
+    $consulta = "SELECT Id_editorial, Nombre FROM editorial";
+    $resultado = $conn->query($consulta);
+    $opciones = "";
+    if ($resultado->num_rows > 0) {
+        while($fila = $resultado->fetch_assoc()) {
+            $opciones .= "<option value='" . $fila["Id_editorial"] . "'>" . $fila["Nombre"] . "</option>";
         }
     }
     $conn->close();
-    echo $options;
+    echo $opciones;
 ?>
