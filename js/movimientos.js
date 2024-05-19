@@ -68,9 +68,9 @@ $(document).ready(function(){
        articulo2 = $.trim($("#articulo2").val());
        cantidad2 = parseInt($.trim($("#cantidad2").val()));
        articulo3 = $.trim($("#articulo3").val());
-       cantidad3 = parseInt($.trim($("#cantidad4").val()));
+       cantidad3 = parseInt($.trim($("#cantidad3").val()));
        articulo4 = $.trim($("#articulo4").val());
-       cantidad4 = parseInt($.trim($("#cantidad5").val()));
+       cantidad4 = parseInt($.trim($("#cantidad4").val()));
        articulo5 = $.trim($("#articulo5").val());
        cantidad5 = parseInt($.trim($("#cantidad5").val()));
        console.log(articulo1);
@@ -82,15 +82,13 @@ $(document).ready(function(){
             data: { fechamov:fechamov, usuario:usuario, origen:origen, destino:destino, articulo1:articulo1, cantidad1:cantidad1, articulo2:articulo2, cantidad2:cantidad2, articulo3:articulo3, cantidad3:cantidad3, articulo4:articulo4, cantidad4:cantidad4, articulo5:articulo5, cantidad5:cantidad5, contadorArticulos:contadorArticulos },
             success: function(data){
                 id = data[0].id;
-                autor = data[0].autor;
-                editorial = data[0].editorial;
-                isbn = data[0].isbn;
-                codbarra = data[0].codbarra;
-                costo = data[0].costo;
-                precioventa = data[0].precioventa;
-                puntopedidogral = data[0].puntopedidogral;
-                puntopedidoventa = datos[0].puntopedidoventa;
-                tablamovimientos.row.add([id,titulo,autor,editorial,isbn,codbarra,costo,precioventa,puntopedidogral,puntopedidoventa].draw());   
+                fecha = data[0].fecha;
+                usuario = data[0].usuario;
+                origen = data[0].origen;
+                destino = data[0].destino;
+                articulo = data[0].articulo;
+                cantidad = data[0].cantidad;
+                tablamovimientos.row.add([id,fecha,usuario,origen,destino,articulo,cantidad].draw());   
             }
         })
         $("#modalCRUDmov").modal("hide");

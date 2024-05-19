@@ -26,9 +26,6 @@
     } else {
         echo "Error al ejecutar la consulta: " . mysqli_error($conexion);
     };
-    $content1 = $idusuario;
-    $filename2 = "idusuario.txt";
-    file_put_contents($filename2,$content1);
     $consultamovimiento = "INSERT INTO movimientos (fecha_mov, usuario, origen, destino) VALUES ('$datetime_sql','$idusuario','$origen','$destino')";
     $resultadomovimiento = $conexion->prepare($consultamovimiento);
     $resultadomovimiento->execute();
@@ -45,18 +42,19 @@
         
     for($i = 1; $i <= $contadorprod; $i++){
         $articulo = (isset($_POST['articulo'.$i])) ? $_POST['articulo'.$i] : '';
-        $cantidad = (isset($_POST['cantidad'.$i])) ? $_POST['cantidad'.$i] : '';
-        $filename1 = "articulo.txt";
-        $content1 = $articulo;
-        file_put_contents($filename1,$content1);
-        $filename2 = "cantidad.txt";
-        $content2 = $cantidad;
-        file_put_contents($filename2,$content2);  
+        $cantidad = (isset($_POST['cantidad'.$i])) ? $_POST['cantidad'.$i] : ''; 
         $consultalineamovimiento = "INSERT INTO linea_mov (id_mov, id_art, cantidad) VALUES ('$idlineamov', '$articulo', '$cantidad')";
         $resultadolineamovimiento = $conexion->prepare($consultalineamovimiento);
         $resultadolineamovimiento->execute();
-    }
+    
+    
+    };
 
-    print json_encode($data);
+    $consultatotal = "SELECT m.id_movimiento, m.fecha_mov, m.usuario, m.origen, m.destino, lm.id_art,lm.cantidad FROM movimientos m JOIN linea_mov lm WHERE m.id_movimiento = '$idlineamov'";
+    $resultadototal = $conexion->prepare($consultatotal);
+    $resultadototal->execute();
+    $data=$resultadototal->fetch(PDO::FETCH_ASSOC);
+
+    print json_encode($data, JSON_UNESCAPED_UNICODE); 
     $conexion=null;
-?>echo $art
+?>

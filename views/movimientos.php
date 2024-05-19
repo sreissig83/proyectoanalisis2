@@ -3,16 +3,11 @@
     <?php
 
     if(($_SESSION["s_idRol"] === 2) && ($_SESSION["s_rol_descripcion"] === "deposito") ||($_SESSION["s_idRol"] === 4) && ($_SESSION["s_rol_descripcion"] === "admin")){
-        $consultamov = "SELECT m.id_movimiento, m.fecha_mov, u.usuario_uname, Origen, Destino  FROM movimientos m JOIN usuarios u ON m.usuario = u.usuario_id ";
+        $consultamov = " SELECT m.id_movimiento, m.fecha_mov, u.usuario_uname, m.Origen, m.Destino, a.Titulo, lm.cantidad FROM movimientos m JOIN linea_mov lm ON m.id_movimiento = lm.id_mov JOIN usuarios u ON m.usuario = u.usuario_id JOIN articulo a ON lm.id_art = a.id_articulo";
         $resultadomov = $conexion->prepare($consultamov);
         $resultadomov->execute();
         $datamov=$resultadomov->fetchAll(PDO::FETCH_ASSOC);
-
-        $consultalineamov = "SELECT a.Titulo, lm.cantidad FROM linea_mov lm JOIN articulo a ON lm.id_art = a.id_articulo";
-        $resultadolineamov = $conexion->prepare($consultalineamov);
-        $resultadolineamov->execute();
-        $datalineamov=$resultadolineamov->fetchAll(PDO::FETCH_ASSOC);
-    }
+    };
 
     ?>
     <?php
@@ -45,27 +40,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                    <?php
-                                        foreach($datamov as $datmov) {
-                                    ?>    
-                                        <td class="text-center"><?php echo $datmov['id_movimiento']?></td>
-                                        <td class="text-center"><?php echo $datmov['fecha_mov']?></td>
-                                        <td class="text-center"><?php echo $datmov['usuario_uname']?></td>
-                                        <td class="text-center"><?php echo $datmov['Origen']?></td>
-                                        <td class="text-center"><?php echo $datmov['Destino']?></td>
-                                    <?php
-                                        }
-                                    ?>
-                                    <?php
-                                    foreach($datalineamov as $datlineamov) {
-                                    ?>    
-                                        <td class="text-center"><?php echo $datlineamov['Titulo']?></td>
-                                        <td class="text-center"><?php echo $datlineamov['cantidad']?></td>
-                                    <?php
-                                        }
-                                    ?>        
-                                </tr>
+                                <?php foreach ($datamov as $row): ?>
+                                        <tr>
+                                            <td><?php echo $row['id_movimiento']; ?></td>
+                                            <td><?php echo $row['fecha_mov']; ?></td>
+                                            <td><?php echo $row['usuario_uname']; ?></td>
+                                            <td><?php echo $row['Origen']; ?></td>
+                                            <td><?php echo $row['Destino']; ?></td>
+                                            <td><?php echo $row['Titulo']; ?></td>
+                                            <td><?php echo $row['cantidad']; ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
 
