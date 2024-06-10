@@ -14,7 +14,7 @@
         <h3 id="titlelogin" class="text-center text-white display-4">Meson de Libros</h3>
         <div class="container-fluid">
             <div id="login-row" class="row justify-content-center align-items-center">
-                <div id="login-column" class="col-md-6">
+                <div id="login-column" class="col-md-4">
                     <div id="login-box" class="col-md-12 bg-light text-dark">
                         <form id="formlogin" class="form" action="" method="post">
                             <h3 class="text-center text-dark">Iniciar Sesion</h3>

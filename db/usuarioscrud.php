@@ -18,7 +18,7 @@
     
     $passk = md5($passk);
     switch($opcion){
-        case 1:             //alta
+        case 1:            
             
             $consulta = "INSERT INTO usuarios (usuario_uname, usuario_passk, usuario_nombres, usuario_apellidos, usuario_dni, usuario_correo, roles) VALUES ('$usuario','$passk','$nombres','$apellidos','$dni','$correo','$rol')";
             $resultado = $conexion->prepare($consulta);
@@ -29,8 +29,8 @@
             $resultado->execute();
             $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
             break;
-        case 2:                             //editar
-            $consulta = "UPDATE usuarios SET usuario_uname='$usuario', usuario_passk=$passk, usuario_nombres='$nombres', usuario_apellidos='$apellidos', usuario_dni='$dni', usuario_correo='$correo', roles='$rol'  WHERE usuario_id='$id' ";
+        case 2:                             
+            $consulta = "UPDATE usuarios SET usuario_uname='$usuario', usuario_passk='$passk', usuario_nombres='$nombres', usuario_apellidos='$apellidos', usuario_dni='$dni', usuario_correo='$correo', roles='$rol'  WHERE usuario_id='$id' ";
             $resultado = $conexion->prepare($consulta);
             $resultado->execute();
 
@@ -39,7 +39,7 @@
             $resultado->execute();
             $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
             break;
-        case 3://eliminar
+        case 3:
             $consulta = "DELETE FROM usuarios WHERE usuario_id='$id'";
             $resultado = $conexion->prepare($consulta);
             $resultado->execute();

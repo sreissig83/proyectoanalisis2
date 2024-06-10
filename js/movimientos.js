@@ -23,79 +23,122 @@ function formatearFechamov() {
     return fechamov;
     }
 $(document).ready(function(){
-    tablamovimientos = $("#tablamovimientos").DataTable({
-       "language": {
-           "lengthMenu": "Mostrar _MENU_ registros",
-           "zeroRecords": "No se encontraron resultados",
-           "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-           "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-           "infoFiltered": "(filtrado de un total de _MAX_ registros" ,
-           "sSearch": "Buscar:",
-           "oPaginate": {
-               "sFirst": "Primero",
-               "sLast": "Ultimo",
-               "sNext": "Siguiente",
-               "sPrevious": "Anterior"
-           },
-           "sProcessing": "Procesando...",       
-       }
-   });
-   
-    
-
-   $("#btnnuevoMov").click(function(){//Alta
-       $("#formMovimientos").trigger("reset");
-       $(".modal-header").css("background-color", "#28a745");
-       $(".modal-header").css("color","white");
-       $(".modal-title").text("Nuevo Movimiento");
-       $("#modalCRUDmov").modal("show");
-       id=null;
-
+    var userrol = $.trim($("#useridrol").val());
+    var usedescript = $.trim($("#userdescrip").val());
+    if((userrol == 2 & usedescript == "deposito")||(userrol == 4 & usedescript == "admin")||(userrol == 3 & usedescript == "venta") ){
+        tablamovimientos = $("#tablamovimientos").DataTable({
+        "language": {
+            "lengthMenu": "Mostrar _MENU_ registros",
+            "zeroRecords": "No se encontraron resultados",
+            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "infoFiltered": "(filtrado de un total de _MAX_ registros" ,
+            "sSearch": "Buscar:",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Ultimo",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "sProcessing": "Procesando...",       
+        }
     });
     
-    
-              
+        
 
+    $("#btnnuevoMov").click(function(){
+        $("#formMovimientos").trigger("reset");
+        $(".modal-header").css("background-color", "#28a745");
+        $(".modal-header").css("color","white");
+        $(".modal-title").text("Nuevo Movimiento");
+        $("#modalCRUDmov").modal("show");
+        id=null;
 
-   $("#formMovimientos").submit(function(e){//Envio de los datos al crud.php
-       e.preventDefault();
-       fechamov = formatearFechamov();
-       usuario = $.trim($("#usuario").val());
-       origen = $("#movorigen").val();
-       destino = $("#movdestino").val();
-       articulo1 = $("#articulo1").val();
-       cantidad1 = parseInt($.trim($("#cantidad1").val()));
-       articulo2 = $.trim($("#articulo2").val());
-       cantidad2 = parseInt($.trim($("#cantidad2").val()));
-       articulo3 = $.trim($("#articulo3").val());
-       cantidad3 = parseInt($.trim($("#cantidad3").val()));
-       articulo4 = $.trim($("#articulo4").val());
-       cantidad4 = parseInt($.trim($("#cantidad4").val()));
-       articulo5 = $.trim($("#articulo5").val());
-       cantidad5 = parseInt($.trim($("#cantidad5").val()));
-       console.log(articulo1);
-       console.log(articulo2);
-       $.ajax({
-            url: "../db/movimientoscrud.php",
-            type: "POST",
-            dataType: "json",
-            data: { fechamov:fechamov, usuario:usuario, origen:origen, destino:destino, articulo1:articulo1, cantidad1:cantidad1, articulo2:articulo2, cantidad2:cantidad2, articulo3:articulo3, cantidad3:cantidad3, articulo4:articulo4, cantidad4:cantidad4, articulo5:articulo5, cantidad5:cantidad5, contadorArticulos:contadorArticulos },
-            success: function(data){
-                id = data[0].id;
-                fecha = data[0].fecha;
-                usuario = data[0].usuario;
-                origen = data[0].origen;
-                destino = data[0].destino;
-                articulo = data[0].articulo;
-                cantidad = data[0].cantidad;
-                tablamovimientos.row.add([id,fecha,usuario,origen,destino,articulo,cantidad].draw());   
+        });
+        
+        
+                
+
+        $.ajax({
+            url: "../db/queryorigenmov.php",
+            type: "GET", 
+            success: function(data) {
+                $("#origenmov").html(data);
             }
-        })
-        $("#modalCRUDmov").modal("hide");
-       
-       
-       
-   });
-    
+        });
+        
+        $("#origenmov").change(function() {
+            var origen = $(this).val();
+            if(origen !== "") {
+                $("#destinomov").prop("disabled", false);
+                $.ajax({
+                    url: "../db/querydestinomov.php",
+                    type: "GET",
+                    data: {origen: origen},
+                    success: function(data) {
+                        $("#destinomov").html(data);
+                        $("#destinomov option[value='" + origen + "']").remove();
+                    }
+                });
+            } else {
+                $("#destinomov").prop("disabled", true);
+            }
+        });  
+    $("#formMovimientos").submit(function(e){
+        e.preventDefault();
+        fechamov = formatearFechamov();
+        usuario = $.trim($("#usuario").val());
+        origen = $.trim($("#origenmov").val());
+        destino = $.trim($("#destinomov").val());
+        articulo1 = $.trim($("#articulo1").val());
+        cantidad1 = parseInt($.trim($("#cantidad1").val()));
+        articulo2 = $.trim($("#articulo2").val());
+        cantidad2 = parseInt($.trim($("#cantidad2").val()));
+        articulo3 = $.trim($("#articulo3").val());
+        cantidad3 = parseInt($.trim($("#cantidad3").val()));
+        articulo4 = $.trim($("#articulo4").val());
+        cantidad4 = parseInt($.trim($("#cantidad4").val()));
+        articulo5 = $.trim($("#articulo5").val());
+        cantidad5 = parseInt($.trim($("#cantidad5").val()));
+        console.log(articulo1);
+        console.log(articulo2);
+        $.ajax({
+                url: "../db/movimientoscrud.php",
+                type: "POST",
+                dataType: "json",
+                data: { fechamov:fechamov, usuario:usuario, origen:origen, destino:destino, articulo1:articulo1, cantidad1:cantidad1, articulo2:articulo2, cantidad2:cantidad2, articulo3:articulo3, cantidad3:cantidad3, articulo4:articulo4, cantidad4:cantidad4, articulo5:articulo5, cantidad5:cantidad5, contadorArticulos:contadorArticulos },
+                success: function(data){
+                    id = data[0].id;
+                    fecha = data[0].fecha;
+                    usuario = data[0].usuario;
+                    origen = data[0].origen;
+                    destino = data[0].destino;
+                    articulo = data[0].articulo;
+                    cantidad = data[0].cantidad;
+                    tablamovimientos.row.add([id,fecha,usuario,origen,destino,articulo,cantidad].draw());   
+                }
+            })
+            $("#modalCRUDmov").modal("hide");
+            location.reload();
+    });
+    }else if(userrol == 5 & usedescript == "lector"){
+        tablamovimientos = $("#tablamovimientos").DataTable({
+            "language": {
+                "lengthMenu": "Mostrar _MENU_ registros",
+                "zeroRecords": "No se encontraron resultados",
+                "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "infoFiltered": "(filtrado de un total de _MAX_ registros" ,
+                "sSearch": "Buscar:",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast": "Ultimo",
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                "sProcessing": "Procesando...",       
+            }
+        });
+    };
 })
 

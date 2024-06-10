@@ -53,7 +53,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.php">
+                <a class="nav-link" href="../index.php">
                     <span>Meson de Libros</span></a>
             </li>
 
@@ -148,7 +148,53 @@
                     <span>Movimientos</span>
                 </a>
             </li>
-    <?php
+            <?php
+    } else  if(($_SESSION["s_idRol"] === 5) && ($_SESSION["s_rol_descripcion"] === "lector")){
+    ?>
+        <li class="nav-item">
+                <a class="nav-link" href="../views/articulos.php">
+                    <i class="fa-solid fa-book fa-lg"></i>    
+                    <span>Articulos</span>
+                </a>
+            </li>
+            <li class="nav-item">
+            
+                <a class="nav-link" href="../views/editoriales.php">
+                    <i class="fa-solid fa-book fa-lg" href="../views/editoriales.php"></i>
+                    <span>Editoriales</span>     
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="../views/proveedores.php">
+                    <i class="fa-solid fa-book fa-lg"></i>    
+                    <span>Proveedores</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="../views/clientes.php">
+                <i class="fa-solid fa-book fa-lg"></i>    
+                    <span>Clientes</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="../views/movimientos.php">
+                    <i class="fa-solid fa-book fa-lg"></i>    
+                    <span>Movimientos</span>
+                </a>
+            </li>
+            <?php
+    } else  if(($_SESSION["s_idRol"] === 3) && ($_SESSION["s_rol_descripcion"] === "venta")){
+    ?>
+        <li class="nav-item">
+                <a class="nav-link collapsed" href="../views/movimientos.php">
+                    <i class="fa-solid fa-book fa-lg"></i>    
+                    <span>Movimientos</span>
+                </a>
+            </li>
+            <?php
     }
     ?>
             
@@ -232,7 +278,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="user"><?php echo $_SESSION["s_usuario"];?></span>
+                                <input type="hidden" id="username" value="<?php echo $_SESSION['s_usuario']; ?>">
+                                <input type="hidden" id="useridrol" value="<?php echo $_SESSION['s_idRol']; ?>">
+                                <input type="hidden" id="userdescrip" value="<?php echo $_SESSION['s_rol_descripcion']; ?>">
                                 <img class="img-profile rounded-circle"
                                     src="../img/undraw_profile.svg">
                             </a>

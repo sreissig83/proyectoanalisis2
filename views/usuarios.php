@@ -7,9 +7,11 @@
     $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 
     ?>
-
+    <?php
+        if(($_SESSION["s_idRol"] === 4) && ($_SESSION["s_rol_descripcion"] === "admin")){
+    ?>
     
-    <!--Boton del Modal-->
+    <div class="container-fluid"><h2 class="text-center">Usuarios</h2></div>
     <div class="container">
         <div class="row">
             <div class="col-log-12">
@@ -63,8 +65,6 @@
             </div>
         </div>
     </div>
-    
-    <!--Modal de Alta de Usuario-->
     <div class="modal fade" id="modalCRUDuser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
             <div class="modal-content">
@@ -105,32 +105,20 @@
                         <div class="form-group">
                         <label for="completemobile">Rol:</label>
                         <?php
-                            // Conecta a la base de datos
                             $conn = new mysqli("localhost", "root", "", "meson_db");
-
-                            // Verifica la conexión
                             if ($conn->connect_error) {
                             die("Conexión fallida: " . $conn->connect_error);
                             }
-
-                            // Selecciona los datos de la tabla
                             $sql = "SELECT id, descripcion FROM roles";
                             $resultado = $conn->query($sql);
-
-                            // Crea el elemento select
                             echo "<select name='roles' class='form-select' id='rol'>";
                             echo "<option value=''></option>";
-
-                            // Agrega cada resultado como una opción en el elemento select
                             if ($resultado->num_rows > 0) {
                                 while($fila = $resultado->fetch_assoc()) {
                                 echo "<option value='" . $fila["id"] . "'>" . $fila["descripcion"] . "</option>";
                                 }
                             }
-                            
                             echo "</select>";
-                            
-                            // Cierra la conexión
                             $conn->close();
                         ?>
                     </div>
@@ -144,5 +132,12 @@
             </div>
         </div>
 </div>
+<?php
+        }else{
+    ?>    
+    <h1>Acceso Denegado, Ud no posee permisos suficientes.</h1>
+    <?php
+        }
+    ?>    
 
 <?php require_once "parte_inferior.php"?>

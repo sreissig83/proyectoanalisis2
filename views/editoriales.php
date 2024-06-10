@@ -1,6 +1,6 @@
 <?php require_once "parte_superior.php"?> 
 <?php
-    if(($_SESSION["s_idRol"] === 1) && ($_SESSION["s_rol_descripcion"] === "dataentry") ||($_SESSION["s_idRol"] === 4) && ($_SESSION["s_rol_descripcion"] === "admin")){
+    if(($_SESSION["s_idRol"] === 1) && ($_SESSION["s_rol_descripcion"] === "dataentry") ||($_SESSION["s_idRol"] === 4) && ($_SESSION["s_rol_descripcion"] === "admin")||($_SESSION["s_idRol"] === 5) && ($_SESSION["s_rol_descripcion"] === "lector")){
                 $consulta = "SELECT Id_editorial, Nombre FROM editorial";
                 $resultado = $conexion->prepare($consulta);
                 $resultado->execute();
@@ -11,6 +11,7 @@
     <?php
         if(($_SESSION["s_idRol"] === 1) && ($_SESSION["s_rol_descripcion"] === "dataentry") ||($_SESSION["s_idRol"] === 4) && ($_SESSION["s_rol_descripcion"] === "admin")){
     ?>   
+        <div class="container-fluid"><h2 class="text-center">Editoriales</h2></div>
         <div class="container">
             <div class="row">
                 <div class="col-log-12">
@@ -77,7 +78,40 @@
         </div>
     </div>
     <?php
-        }else {
+        }else if(($_SESSION["s_idRol"] === 5) && ($_SESSION["s_rol_descripcion"] === "lector")){
+            ?>    
+                <div class="container-fluid"><h2 class="text-center">Editorialess</h2></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-log-12">
+                            <div class="table-responsive">
+                                <table id="tablaeditoriales" class="table table-striped table-bordered table-condensed" style="width:100%">
+                                    <thead class="text-center">
+                                        <tr>
+                                            <th class="text-center">Id</th>
+                                            <th>Nombre</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        foreach($data as $dat) {
+                                        ?>    
+                                        <tr>
+                                            <td class="text-center"><?php echo $dat['Id_editorial']?></td>
+                                            <td class="text-center"><?php echo $dat['Nombre']?></td>
+                                        </tr>
+                                        <?php
+                                            }
+                                        ?>    
+                                    </tbody>
+                                </table>
+        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php
+        }else{
     ?>
     <h1>Acceso Denegado, Ud no posee permisos susficientes.</h1>
     <?php

@@ -2,7 +2,7 @@
 <?php
    
 
-    if(($_SESSION["s_idRol"] === 1) && ($_SESSION["s_rol_descripcion"] === "dataentry") ||($_SESSION["s_idRol"] === 4) && ($_SESSION["s_rol_descripcion"] === "admin")){
+    if(($_SESSION["s_idRol"] === 1) && ($_SESSION["s_rol_descripcion"] === "dataentry") ||($_SESSION["s_idRol"] === 4) && ($_SESSION["s_rol_descripcion"] === "admin")||($_SESSION["s_idRol"] === 5) && ($_SESSION["s_rol_descripcion"] === "lector")){
             $consulta = "SELECT a.id_articulo, a.Titulo, a.Autor, e.Nombre, a.ISBN, a.cod_barra, a.costo, a.precio_venta, a.punto_pedido_gral, a.punto_pedido_venta FROM articulo a JOIN editorial e ON a.Id_editorial = e.Id_editorial";
             $resultado = $conexion->prepare($consulta);
             $resultado->execute();
@@ -13,7 +13,8 @@
         if(($_SESSION["s_idRol"] === 1) && ($_SESSION["s_rol_descripcion"] === "dataentry") ||($_SESSION["s_idRol"] === 4) && ($_SESSION["s_rol_descripcion"] === "admin")){
 ?>
 
-    <div class="container">
+    <div class="container-fluid"><h2 class="text-center">Articulos</h2></div>
+    <div class="container-fluid">
         <div class="row">
             <div class="col-log-12">
                 <button id="btnnuevoArt" type="button" class="btn btn-success"><i class="fa-solid fa-plus"></i></button>
@@ -22,11 +23,11 @@
     </div>
     
     
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-log-12">
+            <div class="col-12">
                 <div class="table-responsive">
-                    <table id="tablaarticulos" class="table table-striped table-bordered table-condensed" style="width:100%">
+                    <table id="tablaarticulos" class="table table-striped table-bordered" style="width:100%">
                         <thead class="text-center">
                             <tr>
                                 <th class="text-center">Id</th>
@@ -145,10 +146,59 @@
           </div>
         </div>
       </div>
+      
       <?php
-        }else {
-    ?>
-    
+        }else if(($_SESSION["s_idRol"] === 5) && ($_SESSION["s_rol_descripcion"] === "lector")){
+    ?>  
+    <div class="container-fluid"><h2 class="text-center">Articulos</h2></div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table id="tablaarticulos" class="table table-striped table-bordered" style="width:100%">
+                        <thead class="text-center">
+                            <tr>
+                                <th class="text-center">Id</th>
+                                <th>Titulo</th>
+                                <th>Autor</th>
+                                <th>Editorial</th>
+                                <th>ISBN</th>
+                                <th>Codigo de Barras</th>
+                                <th>Costo</th>
+                                <th>Precio de Venta</th>
+                                <th>Cantidad en Deposito</th>
+                                <th>Cantidad en Punto de Venta</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach($data as $dat) {
+                            ?>    
+                            <tr>
+                                <td class="text-center"><?php echo $dat['id_articulo']?></td>
+                                <td class="text-center"><?php echo $dat['Titulo']?></td>
+                                <td class="text-center"><?php echo $dat['Autor']?></td>
+                                <td class="text-center"><?php echo $dat['Nombre']?></td>
+                                <td class="text-center"><?php echo $dat['ISBN']?></td>
+                                <td class="text-center"><?php echo $dat['cod_barra']?></td>
+                                <td class="text-center"><?php echo $dat['costo']?></td>
+                                <td class="text-center"><?php echo $dat['precio_venta']?></td>
+                                <td class="text-center"><?php echo $dat['punto_pedido_gral']?></td>
+                                <td class="text-center"><?php echo $dat['punto_pedido_venta']?></td>
+                            </tr>
+                            <?php
+                                }
+                            ?>    
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
+        }else{
+    ?>    
     <h1>Acceso Denegado, Ud no posee permisos suficientes.</h1>
     <?php
         }

@@ -6,7 +6,7 @@ $(document).ready(function(){
            "defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btnEditarUser'><i class='fa-solid fa-pen'></i></button><button class='btn btn-danger btnEliminarUser'><i class='fa-solid fa-trash'></i></button></div></div>"
        }],
 
-       //Cambiar lenguaje a Español
+       
        "language": {
            "lengthMenu": "Mostrar _MENU_ registros",
            "zeroRecords": "No se encontraron resultados",
@@ -24,7 +24,7 @@ $(document).ready(function(){
        }
    });
    
-   $("#btnnuevoUser").click(function(){//Alta
+   $("#btnnuevoUser").click(function(){
        $("#formNuevoUser").trigger("reset");
        $(".modal-header").css("background-color", "#28a745");
        $(".modal-header").css("color","white");
@@ -35,7 +35,7 @@ $(document).ready(function(){
        opcion=1;
    });
    
-   var fila; //captura la fila que debe borrar o editar segun se apreta el boton
+   var fila;
   
 
    $(document).on("click", ".btnEditarUser", function(){
@@ -48,7 +48,7 @@ $(document).ready(function(){
        dni = parseInt(fila.find('td:eq(5)').text());
        correo = fila.find('td:eq(6)').text();
        rol = fila.find('td:eq(7)').text();
-      
+       document.getElementById("valcontra").style.display = "none";
 
        $("#nombreusuario").val(nombreusuario);
        $("passkusuario").val(passkusuario);
@@ -66,10 +66,10 @@ $(document).ready(function(){
    });
 
    
-   $(document).on("click", ".btnEliminarUser", function(){//Eliminar
+   $(document).on("click", ".btnEliminarUser", function(){
        fila = $(this);
        id = parseInt($(this).closest("tr").find('td:eq(0)').text());
-       opcion = 3;//editar
+       opcion = 3;
        var respuesta = confirm("¿Desea Eliminar el registro: "+id+"?");
        if(respuesta){
            $.ajax({
@@ -80,23 +80,19 @@ $(document).ready(function(){
                success: function(data){
                    tablausuarios.row(fila.parent('tr').remove).draw();
                }
-           })
+           });
+           
        }
+        
    });
    
    
-   $("#formNuevoUser").submit(function(e){//Envio de los datos al crud.php
+   $("#formNuevoUser").submit(function(e){
        e.preventDefault();
        nombreusuario= $.trim($("#nombreusuario").val());
        passkusuario =  $.trim($("#passkusuario").val());
-       valpasskusuario= $.trim($("#validarpassk").val());
-       if(passkusuario != valpasskusuario){
-        Swal.fire({
-            icon:'error',
-            title:'Las contraseñas no concuerdan.',
-        });
-        return;
-       }else{
+       if(opcion == 2){
+        alert("modifica");
         nombres = $.trim($("#nombres").val());
         apellidos = $.trim($("#apellidos").val());
         dni = $.trim($("#dni").val());
@@ -116,17 +112,51 @@ $(document).ready(function(){
                dni = data[0].dni;
                correo = data[0].correo;
                rol = data[0].rol;
-               if(opcion == 1){
-                   tablausuarios.row.add([id,nombreusuario,passkusuario,nombres,apellidos,dni,correo,rol].draw());
-               }else{
-                   tablausuarios.row(fila).data([id,nombreusuario,passkusuario,nombres,apellidos,dni,correo,rol].draw());
-               };
-               
+               tablausuarios.row(fila).data([id,nombreusuario,passkusuario,nombres,apellidos,dni,correo,rol].draw());   
            }
-       })
+       });
        $("#modalCRUDuser").modal("hide");
-       }
+       }else{
+            alert("ingresa");
+            valpasskusuario= $.trim($("#validarpassk").val());
+            if(passkusuario != valpasskusuario){
+                Swal.fire({
+                    icon:'error',
+                    title:'Las contraseñas no concuerdan.',
+                });
+                return;
+            }else{
+                nombres = $.trim($("#nombres").val());
+                apellidos = $.trim($("#apellidos").val());
+                dni = $.trim($("#dni").val());
+                correo = $.trim($("#correo").val());
+                rol = $.trim($("#rol").val());
+                $.ajax({
+                url: "../db/usuarioscrud.php",
+                type: "POST",
+                dataType: "json",
+                data: {id:id, nombreusuario:nombreusuario, passkusuario:passkusuario, nombres:nombres, apellidos:apellidos, dni:dni, correo:correo, rol:rol, opcion:opcion},
+                success: function(data){
+                    id = data[0].id;
+                    nombreusuario = data[0].nombreusuario;
+                    passkkusuario = data[0].passkkusuario;
+                    nombres = data[0].nombres;
+                    apellidos = data[0].apellidos;
+                    dni = data[0].dni;
+                    correo = data[0].correo;
+                    rol = data[0].rol;
+                    if(opcion == 1){
+                        tablausuarios.row.add([id,nombreusuario,passkusuario,nombres,apellidos,dni,correo,rol].draw());
+                    }else{
+                        tablausuarios.row(fila).data([id,nombreusuario,passkusuario,nombres,apellidos,dni,correo,rol].draw());
+                    };
+                    
+                }
+            });
+            $("#modalCRUDuser").modal("hide");
+        };
+       };
        
-   });      
+       });      
 })
     
