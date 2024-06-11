@@ -15,7 +15,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-1 col-sm-6 text-left"> 
-                    <button id="btnnuevoArt" type="button" class="btn btn-success"><i class="fa-solid fa-plus"></i></button>
+                    <button id="btnnuevoEdit" type="button" class="btn btn-success"><i class="fa-solid fa-plus"></i></button>
                 </div>
                     <div class="col-lg-11 col-sm-6 text-right">
                         <a id="helpeditoriales" class="btn btn-info" href="./helpeditoriales.html" target="_blank">Ayuda</a>
