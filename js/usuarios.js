@@ -92,7 +92,6 @@ $(document).ready(function(){
        nombreusuario= $.trim($("#nombreusuario").val());
        passkusuario =  $.trim($("#passkusuario").val());
        if(opcion == 2){
-        alert("modifica");
         nombres = $.trim($("#nombres").val());
         apellidos = $.trim($("#apellidos").val());
         dni = $.trim($("#dni").val());
