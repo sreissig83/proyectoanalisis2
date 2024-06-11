@@ -1,0 +1,9 @@
+1. El usuario con Rol DEPOSITO sera el que lleve a acabo la carga de los movimientos 
+2.0 Se podra agregar nuevos movinuevos  pulsando el icono con el signo +
+2.1 Se debera ingresar la Fecha del movimiento, El usuario sera el que tenga la sesion inciada, no se puede modificar esto.
+2.2 Se debera seleccionar el origen del movimiento para que se habilite la opcion de seleccionar el destino
+2.3 al habilitarse el destino, se podra seleccionar los posibles, excluyendo el origen.
+2.4 Para agregar articulos al movimiento, seleccionar el boton de Agregar producto
+2.5 Se debera seleccionar de la lista el producto a cargar junto a la cantidad, si se desea agregar mas debera seleccionar el boton de Agregar producto
+2.6 Los movimientos permiten un maximo de 5 articulos en cada movimiento. Con un alerta indicando que se ha llegado al maximo.
+2.7 para registrar el movimiento se debera seleccionar el boton Aceptar

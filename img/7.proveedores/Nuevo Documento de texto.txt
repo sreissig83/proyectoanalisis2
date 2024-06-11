@@ -1,0 +1,7 @@
+1. El usuario con Rol DATA ENTRY sera el que lleve a acabo el ingreso o modificiacion y/o eliminacion de los proveedores
+2.0 Se podra agregar nuevos proveedores pulsando el icono con el signo +
+2.1 Una vez cargada el nuevo proveedor debera confirmare con el boton Guardar
+3 Se podra Editar un proveedor seleccionando el icono con forma de lapiz dentro de la linea a editar
+3.1 Pudiendo modificar aspectos del mismo, debera confirmarse los cambios seleccionando Guardar
+4 Se podra el Eliminar cualquier proveedor seleccionando el icono de basurero dentro de la linea a elimiar
+4.1 Se debera Confirmar la eliminacion del proveedor pulsando aceptar

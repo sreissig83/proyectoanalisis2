@@ -21,7 +21,7 @@
                         <button id="btnnuevoMov" type="button" class="btn btn-success"><i class="fa-solid fa-plus"></i></button>
                     </div>
                     <div class="col-lg-11 col-sm-6 text-right">
-                        <a id="helpmovimientos" class="btn btn-info" href="./helmovimientos.html" target="_blank">Ayuda</a>
+                        <a id="helpmovimientos" class="btn btn-info" href="./helpmovimientos.html" target="_blank">Ayuda</a>
                     </div>
                 </div>
             </div>   

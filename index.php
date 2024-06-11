@@ -32,7 +32,7 @@
                         </form> 
                         <div class="row justify-content-md-center">
                             <div class="col-md-12">
-                                <button  id="helplogin" class=" btn btn-secondary btn-sm" value="Ayuda" onclick="">Ayuda</button>
+                                <a  id="helplogin" class=" btn btn-secondary btn-sm" value="Ayuda" href="helplogin.html" target="_blank">Ayuda</a>
                             </div>
                             </div>
                         </div>
@@ -50,10 +50,5 @@
 
     <script src="plugins/sweetalert2/sweetalert2.all.min.js"></script>
     <script src="js/login.js"></script>
-    <script type="text/javascript">
-        document.getElementById("helplogin").onclick = function () {
-        window.open("helplogin.html", "_blank");
-    };
-    </script>
 </body>
 </html>
