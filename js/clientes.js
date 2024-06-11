@@ -31,7 +31,7 @@ $(document).ready(function(){
             $("#formClientes").trigger("reset");
             $(".modal-header").css("background-color", "#28a745");
             $(".modal-header").css("color","white");
-            $(".modal-title").text("Nueva Editorial");
+            $(".modal-title").text("Nueva Cliente");
             $("#modalCRUDcli").modal("show");
             id=null;
             opcion=1;

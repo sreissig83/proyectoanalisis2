@@ -16,8 +16,11 @@
     <div class="container-fluid"><h2 class="text-center">Articulos</h2></div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-log-12">
+            <div class="col-lg-1 text-left">
                 <button id="btnnuevoArt" type="button" class="btn btn-success"><i class="fa-solid fa-plus"></i></button>
+            </div>
+            <div class="col-lg-11 text-right">
+                <a   id="helparticulos" class="btn btn-info" href="./helparticulos.html" Target="_blank" value="Ayudaarticulos" onclick="">Ayuda</a>
             </div>
         </div>
     </div>

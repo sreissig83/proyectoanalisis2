@@ -119,7 +119,7 @@ $(document).ready(function(){
                 }
             })
             $("#modalCRUDmov").modal("hide");
-            location.reload();
+    
     });
     }else if(userrol == 5 & usedescript == "lector"){
         tablamovimientos = $("#tablamovimientos").DataTable({

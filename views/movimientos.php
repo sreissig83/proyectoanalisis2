@@ -17,8 +17,11 @@
             <div class="container-fluid"><h2 class="text-center">Movimientos</h2></div>
             <div class="container">
                 <div class="row">
-                    <div class="col-log-12">
+                    <div class="col-lg-1 col-sm-6 text-left">
                         <button id="btnnuevoMov" type="button" class="btn btn-success"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                    <div class="col-lg-11 col-sm-6 text-right">
+                        <a id="helpmovimientos" class="btn btn-info" href="./helmovimientos.html" target="_blank">Ayuda</a>
                     </div>
                 </div>
             </div>   

@@ -30,10 +30,17 @@
                                 <input type="submit" name="submit" class=" btn btn-dark btn-lg" value="Conectar">
                             </div>
                         </form> 
-                            </div>         
+                        <div class="row justify-content-md-center">
+                            <div class="col-md-12">
+                                <button  id="helplogin" class=" btn btn-secondary btn-sm" value="Ayuda" onclick="">Ayuda</button>
+                            </div>
+                            </div>
                         </div>
+                    </div>         
                     </div>
-                </div> 
+                    </div>
+                    
+                    </div> 
         </div>
     </div>  
     
@@ -43,5 +50,10 @@
 
     <script src="plugins/sweetalert2/sweetalert2.all.min.js"></script>
     <script src="js/login.js"></script>
+    <script type="text/javascript">
+        document.getElementById("helplogin").onclick = function () {
+        window.open("helplogin.html", "_blank");
+    };
+    </script>
 </body>
 </html>

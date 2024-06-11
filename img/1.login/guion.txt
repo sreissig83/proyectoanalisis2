@@ -1,0 +1,8 @@
+1. En la pantalla de inicio (Login) deberan ingresarse el Usuario 
+1.1Luego debera ingresarse la Contraseña Generados por el administrador, la contraseña estara oculta al escribirse.
+1.2 Se debera presionar el boton de conectar
+2. Si el acceso es Exitoso se mostrara un mensaje de aceptacion de contraseña y sera dirigido a la pagina principal una vez aceptado en el boton OK
+3. Si el acceso es denegado por ingreso erroneo de algun atributo se mostrara mensaje de error y un boton de OK para permanecer en el login
+4. Para cerrar la sesion el Usuario presionar el boton de cerrar cesion.
+4.1 luego debera confirmar su salida del sistema, pudiendo cancelar de no ser necesario.
+4.2 una vez confirmado, se mostrara un cartel confirmando el cierre de la misma. una vez cerrada la sesion el sistema volvera a la pantalla de Login.

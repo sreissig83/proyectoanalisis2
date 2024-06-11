@@ -1,0 +1,8 @@
+1.Elusuario con perfil de administrador sera el unico que podra acceder al menu de usuriarios, siendo este el unico con permisos para realizar acciones en esta ventana
+2 Se podrian generar nuevos usuarios
+2.1 Se debera rellenar los campos para generar usuarios, al asignar un ROL se delimitara el acceso a partes del sistema. 
+2.2 debe confirmarse seleccionanado Enviar
+3 Se podra Editar los campos de los usuarios seleccionando el icono con forma de lapiz dentro de la linea a editar
+3.1 Pudiendo modificar aspectos del mismo, debera confirmarse los cambios seleccionando ENviar
+4 Se podra el Eliminar cualquier usuario seleccionando el icono de basurero dentro de la linea a elimiar
+4.1 Se debera Confirmar la eliminacion del Usuario.

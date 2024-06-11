@@ -15,9 +15,12 @@
         <div class="container-fluid"><h2 class="text-center">Clientes</h2></div>
         <div class="container">
             <div class="row">
-                <div class="col-log-12">
-                    <button id="btnnuevoCli" type="button" class="btn btn-success"><i class="fa-solid fa-plus"></i></button>
-                </div>
+            <div class="col-lg-1 col-sm-6 text-left"> <!-- En pantallas grandes ocupa 1 columna, en pantallas pequeñas ocupa 6 columnas -->
+        <button id="btnnuevoArt" type="button" class="btn btn-success"><i class="fa-solid fa-plus"></i></button>
+    </div>
+    <div class="col-lg-11 col-sm-6 text-right"> <!-- En pantallas grandes ocupa 11 columnas, en pantallas pequeñas ocupa 6 columnas -->
+        <a id="helpclientes" class="btn btn-info" href="./helpclientes.html" target="_blank">Ayuda</a>
+    </div>
             </div>
         </div>   
         

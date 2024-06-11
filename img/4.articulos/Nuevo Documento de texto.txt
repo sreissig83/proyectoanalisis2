@@ -1,0 +1,7 @@
+1. El usuario con Rol DATA ENTRY sera el que lleve a acabo el ingreso o modificiacion y/o eliminacion de los Articulos
+2.0 Se podra agregar nuevos articulos pulsando el icono con el signo +
+2.1 al cargar el nuevo articulo, seleccionandose la editorial de la lista de editoriales ya cargadas, debera confirmare con el boton Guardar
+3 Se podra Editar un articulo seleccionando el icono con forma de lapiz dentro de la linea a editar
+3.1 Pudiendo modificar aspectos del mismo, debera confirmarse los cambios seleccionando Guardar
+4 Se podra el Eliminar cualquier articulo seleccionando el icono de basurero dentro de la linea a eliminar
+4.1 Se debera Confirmar la eliminacion del articulo pulsando aceptar
